@@ -1,4 +1,4 @@
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, onSnapshot } from "firebase/firestore";
 import { db } from "./fireStoreConfig";
 import { useEffect, useState } from "react";
 
@@ -8,10 +8,25 @@ const Practice = () => {
 	const colRef = collection(db, "books");
 
 	// get collection data
+	//* use/type => fbgetdoc
+
+	// useEffect(() => {
+	// 	const getBooks = async () => {
+	// 		const data = await getDocs(colRef);
+	// 		setBooks(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+	// 	};
+	// 	getBooks();
+	// }, []);
+
+	// get realtime collection data
+	//* use/type => fbgetdata
 	useEffect(() => {
-		const getBooks = async () => {
-			const data = await getDocs(colRef);
-			setBooks(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+		const getBooks = () => {
+			onSnapshot(colRef, (snapshot) => {
+				setBooks(
+					snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+				);
+			});
 		};
 		getBooks();
 	}, []);
