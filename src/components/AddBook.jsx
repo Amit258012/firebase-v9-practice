@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { db } from "../fireStore/fireStoreConfig";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 
 const AddBook = () => {
 	const [newTitle, setNewTitle] = useState("");
@@ -12,6 +12,7 @@ const AddBook = () => {
 		await addDoc(colRef, {
 			title: newTitle.trim(),
 			author: newAuthor.trim(),
+			createdAt: serverTimestamp(),
 		});
 		alert("Successfully added the Book!");
 		setNewTitle("");
