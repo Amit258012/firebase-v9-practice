@@ -1,9 +1,8 @@
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useEffect, useState } from "react";
-import Login from "./Login";
-import Logout from "./Logout";
 
-const AuthStatus = () => {
+// Auth state Status
+export const checkAuthState = () => {
 	const [user, setUser] = useState(null);
 	useEffect(() => {
 		const auth = getAuth();
@@ -11,21 +10,7 @@ const AuthStatus = () => {
 			setUser(user);
 		});
 	}, []);
-	return (
-		<div>
-			{user ? (
-				<div>
-					<h1>Welcome, {user.email}!</h1>
-					<Logout />
-				</div>
-			) : (
-				<div>
-					<h1>Login</h1>
-					<Login />
-				</div>
-			)}
-		</div>
-	);
+	return user;
+	// if user is logged out then the user value will be null!
 };
-
-export default AuthStatus;
+// call:-  const user = checkAuthState();

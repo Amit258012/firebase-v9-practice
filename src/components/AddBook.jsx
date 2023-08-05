@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { db } from "../fireStore/fireStoreConfig";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import Form from "./Form";
 
 const AddBook = () => {
 	const [newTitle, setNewTitle] = useState("");
@@ -22,25 +23,13 @@ const AddBook = () => {
 	return (
 		<div>
 			<h2>Add to Firestore</h2>
-			<form>
-				<label htmlFor="title">Title: </label>
-				<input
-					type="text"
-					name="title"
-					value={newTitle}
-					required
-					onChange={(e) => setNewTitle(e.target.value)}
-				/>
-				<label htmlFor="author">Author: </label>
-				<input
-					type="text"
-					name="author"
-					value={newAuthor}
-					required
-					onChange={(e) => setNewAuthor(e.target.value)}
-				/>
-				<button onClick={addBook}>Add new book</button>
-			</form>
+			<Form
+				newAuthor={newAuthor}
+				newTitle={newTitle}
+				setNewAuthor={setNewAuthor}
+				setNewTitle={setNewTitle}
+			/>
+			<button onClick={addBook}>Add book</button>
 		</div>
 	);
 };

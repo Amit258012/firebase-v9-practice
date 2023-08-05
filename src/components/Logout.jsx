@@ -11,6 +11,7 @@ const Logout = () => {
 			console.log(err.message);
 		}
 	};
+
 	return (
 		<div>
 			<button onClick={handleLogout}>Logout</button>

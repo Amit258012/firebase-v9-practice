@@ -26,27 +26,26 @@ const SignUp = () => {
 
 	return (
 		<div>
-			<h2>
-				<form onSubmit={handleSignUp}>
-					<label htmlFor="email">Email:</label>
-					<input
-						type="email"
-						name="email"
-						value={email}
-						onChange={(event) => setEmail(event.target.value)}
-					/>
-					<label htmlFor="password">Password</label>
-					<input
-						type="password"
-						name="password"
-						value={password}
-						onChange={(event) => setPassword(event.target.value)}
-					/>
-					<button type="submit" onClick={handleSignUp}>
-						signup
-					</button>
-				</form>
-			</h2>
+			<h2>Signup</h2>
+			<form onSubmit={handleSignUp}>
+				<label htmlFor="email">Email:</label>
+				<input
+					type="email"
+					name="email"
+					value={email}
+					onChange={(event) => setEmail(event.target.value)}
+				/>
+				<label htmlFor="password">Password</label>
+				<input
+					type="password"
+					name="password"
+					value={password}
+					onChange={(event) => setPassword(event.target.value)}
+				/>
+				<button type="submit" onClick={handleSignUp}>
+					signup
+				</button>
+			</form>
 		</div>
 	);
 };
